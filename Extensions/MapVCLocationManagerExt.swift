@@ -111,6 +111,9 @@ extension MapVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        mapView.animate(toBearing: newHeading.trueHeading)
+        if !panningAcrossMap {
+            mapView.animate(toBearing: newHeading.trueHeading)
+        }
+        
     }
 }

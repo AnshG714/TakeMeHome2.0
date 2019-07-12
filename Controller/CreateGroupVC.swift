@@ -112,9 +112,11 @@ extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? UserCell else {return}
-
+        cell.setSelected(true, animated: true)
+        cell.contentView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         if chosenEmailArray.count <= 3 {
             if !chosenEmailArray.contains(cell.emailTxt.text!) {
+                
                 chosenEmailArray.append(cell.emailTxt.text!)
                 groupMembersTxt.text = chosenEmailArray.joined(separator: ", ")
                 //cell.configureCell(withEmail: emailArray[indexPath.row], isSelected: true)
@@ -133,10 +135,11 @@ extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
         guard let cell = tableView.cellForRow(at: indexPath) as? UserCell else {return}
-        
+        cell.setSelected(false, animated: true)
+        cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         chosenEmailArray = chosenEmailArray.filter({ $0 != cell.emailTxt.text! })
         
-        //cell.cellSelected = false
+        
         if chosenEmailArray.count >= 1 {
             groupMembersTxt.text = chosenEmailArray.joined(separator: ", ")
         } else {

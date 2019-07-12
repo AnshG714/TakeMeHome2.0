@@ -20,6 +20,7 @@ class UserCell: UITableViewCell {
     
     func configureCell(withEmail email: String, isSelected: Bool) {
         self.emailTxt.text = email
+        
         if isSelected {
             contentView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         } else {
@@ -27,17 +28,14 @@ class UserCell: UITableViewCell {
         }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-            if cellSelected == true {
-                contentView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-                cellSelected = false
-            } else {
-                contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                cellSelected = true
-            }
-    }
-    
-    
-
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//            if cellSelected == true {
+//                contentView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+//                cellSelected = false
+//            } else {
+//                contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//                cellSelected = true
+//            }
+//    }
 }
