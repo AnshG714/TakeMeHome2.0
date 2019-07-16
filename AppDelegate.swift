@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController?.present(loginMainVC, animated: true, completion: nil)
         }
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-    
+
         //GIDSignIn.sharedInstance()?.delegate = self
         return true
     }
