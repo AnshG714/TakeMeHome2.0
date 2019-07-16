@@ -74,7 +74,7 @@ class CreateGroupVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func groupNameChanged(_ sender: Any) {
-        if groupNameTxt.text == "" && chosenEmailArray.count >= 1 {
+        if groupNameTxt.text == "" || chosenEmailArray.count < 1 {
             doneButton.isHidden = true
         } else {
             doneButton.isHidden = false
@@ -112,9 +112,11 @@ extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? UserCell else {return}
-        cell.setSelected(true, animated: true)
-        cell.contentView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        
+        
         if chosenEmailArray.count <= 3 {
+            cell.contentView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            cell.setSelected(true, animated: true)
             if !chosenEmailArray.contains(cell.emailTxt.text!) {
                 
                 chosenEmailArray.append(cell.emailTxt.text!)

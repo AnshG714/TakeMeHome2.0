@@ -90,6 +90,7 @@ extension MapVC: CLLocationManagerDelegate {
         }
         customInfoWindow?.location = position
         self.mapView.addSubview(customInfoWindow!)
+        panningAcrossMap = true
         
         return false
     }

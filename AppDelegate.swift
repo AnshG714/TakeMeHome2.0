@@ -35,7 +35,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
-        GMSServices.provideAPIKey("AIzaSyD-KQoaz7aZJHu8yaFkZb8pxPvPXlGaHYc")
+        
+        var keys: NSDictionary?
+        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
+            keys = NSDictionary(contentsOfFile: path)
+        }
+        
+        if let dict = keys {
+            let gmsAPIKey = dict["GMSServicesAPIKey"] as? String
+            let clientKey = dict["GIDSignInClientID"] as? String
+            
+            // Initialize Parse.
+            GMSServices.provideAPIKey(gmsAPIKey!)
+            GIDSignIn.sharedInstance()?.clientID = clientKey!
+        }
+        
         if Auth.auth().currentUser == nil || AccessToken.current != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let loginMainVC = storyboard.instantiateViewController(withIdentifier: "LoginMainVC")
@@ -43,8 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController?.present(loginMainVC, animated: true, completion: nil)
         }
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        
-        GIDSignIn.sharedInstance()?.clientID = "588209366180-r3apca6e3camlcavm6mi1ais82e90qj3.apps.googleusercontent.com"
+    
         //GIDSignIn.sharedInstance()?.delegate = self
         return true
     }
