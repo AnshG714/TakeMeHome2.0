@@ -155,7 +155,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, GMSMapViewDelegate {
             //print("inside for loop")
             DataService.instance.getMemberLocations(forUID: uid) { (returnedLocation) in
                // print("inside Firebase method")
-                if returnedLocation != nil  {
+                if returnedLocation != nil && uid != (Auth.auth().currentUser?.uid)! {
                    
                     if self.userMarkers[uid] != nil {
                         self.userMarkers[uid]?.position = CLLocationCoordinate2D(latitude: (returnedLocation?.latitude)!, longitude: (returnedLocation?.longitude)!)
